@@ -18,9 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResources(['user' => 'API\UserController']);
-
+Route::apiResources(['users' => 'RelatorioController']);
 Route::get('profile', 'API\UserController@profile');
 
 Route::get('findUser', 'API\UserController@search');
 
 Route::put('profile', 'API\UserController@updateProfile');
+

@@ -14139,11 +14139,15 @@ a.text-muted:hover {
 }
 
 .primary {
-  color: #A2FFE9;
+  color: #70C2E8;
+}
+
+.secondary {
+  color: #0093DD;
 }
 
 .router-link-exact-active {
-  background-color: #0093DD;
+  background-color: #174580;
   color: #fff !important;
 }
 
@@ -30239,5 +30243,40 @@ readers do not read off random characters that represent icons */
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+@media print {
+  .nav.nav-tabs li:not(.active) {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+
+  .btn {
+    display: none;
+  }
+
+  pagination {
+    display: none;
+  }
+
+  .invoice {
+    padding: 10px 20px;
+  }
+
+  .invoice {
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  .table-responsive table {
+    background-color: transparent !important;
+  }
+}
+
+@page {
+  margin: 0;
 }
 

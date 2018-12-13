@@ -11,6 +11,7 @@ require('./bootstrap');
 import Profile from './components/Profile.vue';
 import Dashboard from './components/Dashboard.vue';
 import Users from './components/Users.vue';
+import RelatorioUsuarios from './components/Relatorios/RelatorioUsuarios.vue';
 
 window.Vue = require('vue');
 import Moment from 'moment';
@@ -54,7 +55,9 @@ let routes = [
     { path: '/developer', component: Developer },
     { path: '/users', component: Users },
     { path: '/profile', component: Profile },
+    { path: '/relatorioUsuarios', component: RelatorioUsuarios },
     { path: '*', component: require('./components/NotFound.vue')}
+
   ]
 
 const router = new VueRouter({
@@ -106,7 +109,11 @@ const app = new Vue({
     methods:{
         searchit: _.debounce(() => {
             Fire.$emit('searching');
-        }, 500)
+        }, 500),
+
+        printme(){
+            window.print();
+        }
     },
     
 });

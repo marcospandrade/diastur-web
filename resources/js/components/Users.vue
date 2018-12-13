@@ -44,7 +44,12 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer paginacao-users">
-                  <pagination :data="users" @pagination-change-page="getResults"></pagination>
+                <pagination :data="users" @pagination-change-page="getResults"></pagination>
+                <button class="btn color-secondary" @click.prevent="printme">
+                    Salvar como PDF
+                    <i class="fas fa-user-plus fa-fw"></i>
+                </button>
+                  
               </div>
             <!-- /.card -->
             </div>
@@ -59,8 +64,8 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
-                    <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update User's Info</h5>
+                    <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Adicionar novo usuário</h5>
+                    <h5 class="modal-title" v-show="editmode" id="addNewLabel">Atualizar informações do usuário</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -76,14 +81,14 @@
 
                      <div class="form-group">
                         <input v-model="form.email" type="email" name="email"
-                            placeholder="Email Address"
+                            placeholder="Endereço de e-mail"
                             class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
                         <has-error :form="form" field="email"></has-error>
                     </div>
 
                      <div class="form-group">
                         <textarea v-model="form.bio" name="bio" id="bio"
-                        placeholder="Short bio for user (Optional)"
+                        placeholder="Descrição (Opcional)"
                         class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
                         <has-error :form="form" field="bio"></has-error>
                     </div>
@@ -91,10 +96,10 @@
 
                     <div class="form-group">
                         <select name="type" v-model="form.type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('type') }">
-                            <option value="">Select User Role</option>
+                            <option value="">Selecione o tipo de usuário</option>
                             <option value="admin">Admin</option>
-                            <option value="user">Standard User</option>
-                            <option value="author">Author</option>
+                            <option value="user"> Usuário</option>
+                            <option value="author">Autor</option>
                         </select>
                         <has-error :form="form" field="type"></has-error>
                     </div>
@@ -107,9 +112,9 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
-                    <button v-show="!editmode" type="submit" class="btn btn-primary">Create</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    <button v-show="editmode" type="submit" class="btn btn-success">Atualizar</button>
+                    <button v-show="!editmode" type="submit" class="btn btn-primary">Criar</button>
                 </div>
 
                 </form>
@@ -202,6 +207,7 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Sim, quero deletar',
+                    cancelButtonText: 'Não quero deletar'
                     }).then((result) => {
                         this.$Progress.start();
                         // Send request to the server
@@ -216,7 +222,7 @@
                                     this.$Progress.finish();
                                 }).catch(()=> {
                                     this.$Progress.fail();
-                                    swal("Falhou!", "Algo de errado não está certo.", "warning");
+                                    swal("Falhou!", "Usuário não foi deletado.", "warning");
                                 });
                          }                      
                     })
@@ -244,6 +250,11 @@
 
                 })
                 .catch(()=>{
+                    swal(
+                        'Oops!',
+                        'Usuário não foi criado.',
+                        'error'
+                        )
                     this.$Progress.fail();
                 })
             },

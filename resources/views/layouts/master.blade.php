@@ -4,7 +4,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="en">
+<html lang="pt">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,10 +69,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
           
+          <li class="nav-item">
+            <router-link to="/profile" class="nav-link">
+              <i class="nav-icon fas fa-user primary"></i>
+              <p>
+                Perfil
+              </p>
+            </router-link>
+          </li>
+
           @can('isAdmin')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-cog green"></i>
+              <i class="nav-icon fa fa-cog primary"></i>
               <p>
                 Gerenciamento
                 <i class="right fa fa-angle-left"></i>
@@ -81,31 +90,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <router-link to="/users" class="nav-link">
-                  <i class="fas fa-users nav-icon"></i>
+                  <i class="fas fa-user-cog nav-icon primary"></i>
                   <p>Usuários</p>
                 </router-link>
               </li>              
             </ul>
           </li>
-          @endcan
-          <li class="nav-item">
-            <router-link to="/profile" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Perfil
-              </p>
-            </router-link>
-          </li>
-          @can('isAdmin')
+
           <li class="nav-item">
             <router-link to="/developer" class="nav-link">
-              <i class="nav-icon fas fa-cogs"></i>
+              <i class="nav-icon fas fa-cogs primary"></i>
               <p>
                 Desenvolvedor
               </p>
             </router-link>
           </li>
           @endcan
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-poll primary"></i>
+              <p>
+                Relatórios
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link to="/relatorioUsuarios" class="nav-link">
+                  <i class="fas fa-users nav-icon primary"></i>
+                  <p>Usuários cadastrados</p>
+                </router-link>
+              </li>              
+            </ul>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
