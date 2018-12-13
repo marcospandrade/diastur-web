@@ -1,13 +1,13 @@
 <template>
     <div class="container">
-        <div class="row mt-5">
+        <div class="row mt-5" v-if="$gate.isAdminOrAuthor()">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Lista de Usuários</h3>
 
                 <div class="card-tools">
-                    <button class="btn btn-success" @click="newModal">
+                    <button class="btn color-secondary" @click="newModal">
                         Adicionar
                         <i class="fas fa-user-plus fa-fw"></i>
                     </button>
@@ -24,7 +24,7 @@
                     <th>Registrado em</th>
                     <th>Modificar</th>
                   </tr>
-                  <tr v-for="user in users" :key="user.id">
+                  <tr v-for="user in users.data" :key="user.id">
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
@@ -43,10 +43,18 @@
                 </tbody></table>
               </div>
               <!-- /.card-body -->
-            </div>
+              <div class="card-footer paginacao-users">
+                  <pagination :data="users" @pagination-change-page="getResults"></pagination>
+              </div>
             <!-- /.card -->
-          </div>
+            </div>
+            </div>
         </div>
+
+        <div v-if="!$gate.isAdminOrAuthor()">
+            <not-found></not-found>
+        </div>
+
         <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -109,6 +117,7 @@
                 </div>
             </div>
             </div>
+        </div>
     </div>
 </template>
 
@@ -125,11 +134,27 @@
                     password: '',
                     type: '',
                     bio: '',
-                    photo: 'admin-icon.png',
+                    photo: 'profile.png',
                 })
             }
         },
         methods:{
+            getResults(page = 1) {
+                this.$Progress.start();
+                        axios.get('api/user?page=' + page)
+                            .then(response => {
+                                this.users = response.data;
+                                this.$Progress.finish();
+                            })
+                            .catch(() => {
+                                swal(
+                                    'Oops...!',
+                                    'Algo de errado não está certo.',
+                                    'error'
+                                )
+                                this.$Progress.fail();
+                            });
+                },
             updateUser(){
                 this.$Progress.start();
 
@@ -147,6 +172,11 @@
                 })
                 .catch(() => {
                     //error
+                    swal(
+                        'Erro!',
+                        'Usuário não foi atualizado.',
+                        'error'
+                        )
                     this.$Progress.fail();
                 })
             },
@@ -193,7 +223,9 @@
             },
 
             loadUsers(){
-                axios.get("api/user").then(({ data }) => (this.users = data.data));
+                if(this.$gate.isAdminOrAuthor){
+                    axios.get("api/user").then(({ data }) => (this.users = data));
+                }                
             },
 
             createUser(){
@@ -221,7 +253,19 @@
             console.log('Users Component mounted.');
         },
         created(){
+            Fire.$on('searching', () => {
+                let query = this.$parent.search;
+                axios.get('api/findUser?q=' + query)
+                .then((data) =>{
+                    this.users = data.data;
+                })
+                .catch(() => {
+
+                })
+            });
+
             this.loadUsers();
+
             Fire.$on('AfterCreate', () => {
                 this.loadUsers();
             });

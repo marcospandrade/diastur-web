@@ -14147,6 +14147,16 @@ a.text-muted:hover {
   color: #fff !important;
 }
 
+.paginacao-users a {
+  background-color: #0093DD !important;
+}
+
+.color-secondary {
+  color: #A2FFE9;
+  background-color: #0093DD !important;
+  border-color: #006091;
+}
+
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
