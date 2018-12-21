@@ -4,6 +4,7 @@
 
 // Variables
 @import 'variables';
+@import 'admin';
 
 //Font Awesome
 $fa-font-path: "../webfonts";
@@ -19,8 +20,56 @@ $fa-font-path: "../webfonts";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
 
+// Core variables and mixins
+@import 'mixins.scss';
+
+// Global CSS
+@import 'global.scss';
+
+// Components
+@import 'navbar.scss';
+@import 'masthead.scss';
+@import 'services.scss';
+@import 'portfolio.scss';
+@import 'timeline.scss';
+@import 'team.scss';
+@import 'contact.scss';
+@import 'footer.scss';
+@import 'itinerario.scss';
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+@media print {
+  .nav.nav-tabs li:not(.active){
+      display: none;
+  }
+  footer{
+    display: none;
+  }
+  .btn{
+    display: none;
+  }
+  pagination{
+    display: none;
+  }
+  .invoice{
+    padding: 10px 20px;
+  }
+
+  .invoice{
+  background-position: center center;
+  background-repeat: no-repeat;
+
+}
+.table-responsive table{
+  background-color: transparent !important;
+}
+
+}
+
+@page {
+  margin: 0;
 }

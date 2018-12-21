@@ -1,0 +1,80 @@
+// Styling for the navbar
+#mainNav {
+  //color
+  .navbar-toggler {
+    font-size: 15px;
+    right: 0;
+    padding: 13px;
+    text-transform: uppercase;
+    //color
+    //color:$secondary;
+    border: 0;
+    //bg-color 
+    //background-color: $primary;
+    @include heading-font;
+  }
+  .navbar-brand {
+    //cor logo
+    color: $primary;
+    @include script-font;
+    &.active,
+    &:active,
+    &:focus,
+    &:hover {
+      //cor ao passar em cima da logo
+      color: darken($secondary, 7.5%) !important;
+    }
+  }
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        font-size: 90%;
+        font-weight: 400;
+        padding: 1.10em 0;
+        letter-spacing: 1px;
+        //cor menu = serviços, portfolios e etc.
+        color: $primary;
+        @include heading-font;
+        &.active,
+        &:hover {
+          //cor ao passar em cima dos links individuais
+          color: darken($secondary, 7.5%) !important;
+        }
+      }
+    }
+  }
+}
+@media(min-width:992px) {
+  #mainNav {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
+    -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
+    transition: padding-top 0.3s, padding-bottom 0.3s;
+    border: none;
+    background-color: transparent;
+    .navbar-brand {
+      font-size: 2.20em;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+    .navbar-nav {
+      .nav-item {
+        .nav-link {
+          padding: 1.1em 1em !important;
+        }
+      }
+    }
+    &.navbar-shrink {
+      padding-top: 0;
+      padding-bottom: 0;
+      //cor navbar
+      background-color: $secondary;
+      .navbar-brand {
+        font-size: 1.75em;
+        padding: 12px 0;
+      }
+    }
+  }
+}

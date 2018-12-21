@@ -1,0 +1,14 @@
+.router-link-exact-active{
+    background-color: #174580;
+    color: #fff !important;
+}
+
+.paginacao-users a{
+    background-color: $secondary !important;
+}
+
+.color-secondary{
+    color: $primary;
+    background-color: $secondary !important;
+    border-color: darken($secondary,15%);
+}
