@@ -15,7 +15,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <title>Dias Tur Admin</title>
 
+  <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/app.css">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
@@ -46,8 +48,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="./img/diastur-logo.png" alt="DiasTur Logo" class="brand-image img-circle elevation-3"
+    <a href="{{ url('/') }}" class="brand-link">
+      <img src="{{ asset('img/diastur-logo.png') }}" alt="DiasTur Logo" class="brand-image img-circle elevation-3"
            style="margin-left: -1px; width: 62px; height: 102px;">
       <span class="brand-text font-weight-light">Painel Admin</span>
     </a>
@@ -93,7 +95,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <i class="fas fa-user-cog nav-icon primary"></i>
                   <p>Usuários</p>
                 </router-link>
-              </li>              
+              </li>
+              <li class="nav-item">
+                <router-link to="/itinerario" class="nav-link">
+                  <i class="fas fa-user-cog nav-icon primary"></i>
+                  <p>Itinerario Busca</p>
+                </router-link>
+              </li>                
             </ul>
           </li>
 
@@ -173,7 +181,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Tudo o que você quiser.
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2018 <a href="#">Wooser Corporation</a>.</strong> Todos os direitos reservados.
+    <strong>Copyright &copy; 2018 <a href="#">DiasTur</a>.</strong> Todos os direitos reservados.
   </footer>
 </div>
 <!-- ./wrapper -->

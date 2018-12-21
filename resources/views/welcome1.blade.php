@@ -7,14 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ @IndicaTur }}</title>
+    <title>{{ @DiasTur }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="{{ asset('js/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
@@ -25,12 +24,12 @@
     <link href="{{ asset('js/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="page-top">
+<body id="page-top">
+    <div id="app">
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">IndicaTur</a>
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">DiasTur</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
@@ -55,48 +54,39 @@
                         </li>
                     </ul>
 
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav text-uppercase ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Entrar') }} <span class="caret"></span>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('login') }}">
+                                {{ __('Login') }}
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item nav-link js-scroll-trigger" href="{{ route('login') }}">
-                                    {{ __('Login') }}
-                                </a>
-                                <a class="dropdown-item nav-link js-scroll-trigger" href="{{ route('register') }}">
-                                    {{ __('Registrar') }}
-                                </a>
-                            </div>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('register') }}">
+                                {{ __('Registrar') }}
+                            </a>
                         </li>
                         @endguest
                         @if (Route::has('login'))
                         @auth
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/home') }}">
+                                {{ __('Home') }}
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item nav-link js-scroll-trigger" href="{{ url('/perfil') }}">
-                                    {{ __('Perfil') }}
-                                </a>
-
-                                <a class="dropdown-item nav-link js-scroll-trigger" href="{{ route('logout') }}">
-                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
                         </li>
+                        <li class="nav-item">    
+                            <a class="nav-link" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                <p>
+                                {{ __('Logout') }}
+                                </p>               
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>    
+                        </li>    
                     </ul>
                     @endauth
                     @endif
@@ -108,7 +98,7 @@
         <header class="masthead">
             <div class="container">
                 <div class="intro-text">
-                    <div class="intro-lead-in">Bem vindo ao IndicaTur!</div>
+                    <div class="intro-lead-in">Bem vindo ao DiasTur!</div>
                     <div class="intro-heading text-uppercase">É muito bom conhecer você!</div>
                     <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#conheca">Saiba mais</a>
                 </div>
@@ -120,8 +110,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Conheça o Indicatur</h2>
-                        <h3 class="section-subheading text-muted">Acompanhe nossos itinerários </h3>
+                        <h2 class="section-heading text-uppercase">Conheça o DiasTur</h2>
+                        <h3 class="section-subheading text-muted">Acompanhe nosso trabalho </h3>
                     </div>
                 </div>
                 <div class="row text-center">
@@ -131,7 +121,7 @@
                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="service-heading">Clube de indicações</h4>
-                        <p class="text-muted">O IndicaTur tem como função principal fornecer um clube de indicações,
+                        <p class="text-muted">O DiasTur tem como função principal fornecer um clube de indicações,
                             onde sua recomendação é bonificada. Leia mais sobre nosso Clube e faça parte!</p>
                     </div>
                     <div class="col-md-4">
@@ -176,7 +166,7 @@
                                 </div>
                             </div>
 
-                            <img class="img-fluid" src="{{asset('/images/portfolio/BeloHorizonte.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('/img/portfolio/01-thumbnail.jpg')}}" alt="">
                         </a>
                         <div class="portfolio-caption">
                             <h4>Belo Horizonte</h4>
@@ -190,11 +180,11 @@
                                     <i class="fas fa-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="{{asset('/images/portfolio/CidadeSalvador.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('/img/portfolio/02-thumbnail.jpg')}}" alt="">
                         </a>
                         <div class="portfolio-caption">
                             <h4>Salvador</h4>
-                            <p class="text-muted">Temos rotas que acompanham os concursos públicos mais conhecidos. </p>
+                            <p class="text-muted">Temos rotas para os concursos públicos mais conhecidos. </p>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6 portfolio-item">
@@ -204,7 +194,7 @@
                                     <i class="fas fa-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="{{asset('/images/portfolio/03-thumbnail.jpg') }}" alt="">
+                            <img class="img-fluid" src="{{asset('/img/portfolio/03-thumbnail.jpg') }}" alt="">
                         </a>
                         <div class="portfolio-caption">
                             <h4>São Paulo</h4>
@@ -218,7 +208,7 @@
                                     <i class="fas fa-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="{{asset('/images/portfolio/04-thumbnail.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('/img/portfolio/04-thumbnail.jpg')}}" alt="">
                         </a>
                         <div class="portfolio-caption">
                             <h4>Maringá</h4>
@@ -232,7 +222,7 @@
                                     <i class="fas fa-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="{{asset('/images/portfolio/05-thumbnail.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('/img/portfolio/05-thumbnail.jpg')}}" alt="">
                         </a>
                         <div class="portfolio-caption">
                             <h4>Curitiba</h4>
@@ -246,7 +236,7 @@
                                     <i class="fas fa-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="{{asset('/images/portfolio/06-thumbnail.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('/img/portfolio/06-thumbnail.jpg')}}" alt="">
                         </a>
                         <div class="portfolio-caption">
                             <h4>Brasília</h4>
@@ -271,7 +261,7 @@
                         <ul class="timeline">
                             <li>
                                 <div class="timeline-image">
-                                    <img class="rounded-circle img-fluid" src="{{asset('/images/about/1.jpg')}}" alt="">
+                                    <img class="rounded-circle img-fluid" src="{{asset('/img/about/1.jpg')}}" alt="">
                                 </div>
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
@@ -288,7 +278,7 @@
                             </li>
                             <li class="timeline-inverted">
                                 <div class="timeline-image">
-                                    <img class="rounded-circle img-fluid" src="{{asset('/images/about/2.jpg')}}" alt="">
+                                    <img class="rounded-circle img-fluid" src="{{asset('/img/about/2.jpg')}}" alt="">
                                 </div>
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
@@ -305,7 +295,7 @@
                             </li>
                             <li>
                                 <div class="timeline-image">
-                                    <img class="rounded-circle img-fluid" src="{{asset('/images/about/3.jpg')}}" alt="">
+                                    <img class="rounded-circle img-fluid" src="{{asset('/img/about/3.jpg')}}" alt="">
                                 </div>
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
@@ -322,7 +312,7 @@
                             </li>
                             <li class="timeline-inverted">
                                 <div class="timeline-image">
-                                    <img class="rounded-circle img-fluid" src="{{asset('/images/about/4.jpg')}}" alt="">
+                                    <img class="rounded-circle img-fluid" src="{{asset('/img/about/4.jpg')}}" alt="">
                                 </div>
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
@@ -338,7 +328,7 @@
                                 </div>
                             </li>
                             <li class="timeline-inverted">
-                                <div class="timeline-image">
+                                <div class="timeline-image timeline-color">
                                     <h4>Faça parte
                                         <br>Da nossa
                                         <br>Historia!</h4>
@@ -362,7 +352,7 @@
                 <div class="row al-center">
                     <div class="col-sm-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="{{asset('/images/team/2.jpg')}}" alt="">
+                            <img class="mx-auto rounded-circle" src="{{asset('/img/team/2.jpg')}}" alt="">
                             <h4>Wagão</h4>
                             <p class="text-muted">Lider Design</p>
                             <ul class="list-inline">
@@ -386,7 +376,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="{{asset('/images/team/3.jpg')}}" alt="">
+                            <img class="mx-auto rounded-circle" src="{{asset('/img/team/3.jpg')}}" alt="">
                             <h4>Iza</h4>
                             <p class="text-muted">Lider de desenvolvimento</p>
                             <ul class="list-inline">
@@ -426,22 +416,22 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
                         <a href="#">
-                            <img class="img-fluid d-block mx-auto" src="{{asset('/images/logos/envato.jpg')}}" alt="">
+                            <img class="img-fluid d-block mx-auto" src="{{asset('/img/logos/envato.jpg')}}" alt="">
                         </a>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <a href="#">
-                            <img class="img-fluid d-block mx-auto" src="{{asset('/images/logos/designmodo.jpg')}}" alt="">
+                            <img class="img-fluid d-block mx-auto" src="{{asset('/img/logos/designmodo.jpg')}}" alt="">
                         </a>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <a href="#">
-                            <img class="img-fluid d-block mx-auto" src="{{asset('/images/logos/themeforest.jpg')}}" alt="">
+                            <img class="img-fluid d-block mx-auto" src="{{asset('/img/logos/themeforest.jpg')}}" alt="">
                         </a>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <a href="#">
-                            <img class="img-fluid d-block mx-auto" src="{{asset('/images/logos/creative-market.jpg')}}"
+                            <img class="img-fluid d-block mx-auto" src="{{asset('/img/logos/creative-market.jpg')}}"
                                 alt="">
                         </a>
                     </div>
@@ -504,7 +494,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <span class="copyright">Copyright &copy; Wooser corporation 2018</span>
+                        <span class="copyright">Copyright &copy; DiasTur - 2018</span>
                     </div>
                     <div class="col-md-4">
                         <ul class="list-inline social-buttons">
@@ -543,7 +533,7 @@
 
         <!-- Modal 1 -->
         <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog  al-center">
                 <div class="modal-content">
                     <div class="close-modal" data-dismiss="modal">
                         <div class="lr">
@@ -558,7 +548,7 @@
                                     <h2 class="text-uppercase">Belo Horizonte</h2>
                                     <p class="item-intro text-muted">Viagem para Belo Horizonte no valor de R$ 160,00
                                         reais.</p>
-                                    <img class="img-fluid d-block mx-auto" src="{{asset('/images/portfolio/BeloHorizonte.jpg')}}"
+                                    <img class="img-fluid d-block mx-auto" src="{{asset('/img/portfolio/01-full.jpg')}}"
                                         alt="">
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
@@ -566,7 +556,7 @@
                                         maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times"></i>
-                                        Close Project</button>
+                                        Fechar</button>
                                 </div>
                             </div>
                         </div>
@@ -591,7 +581,7 @@
                                     <!-- Project Details Go Here -->
                                     <h2 class="text-uppercase">Salvador - BA</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="{{asset('/images/portfolio/CidadeSalvador.jpg')}}"
+                                    <img class="img-fluid d-block mx-auto" src="{{asset('/img/portfolio/02-full.jpg')}}"
                                         alt="">
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
@@ -599,7 +589,7 @@
                                         maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times"></i>
-                                        Close Project</button>
+                                        Fechar</button>
                                 </div>
                             </div>
                         </div>
@@ -622,9 +612,9 @@
                             <div class="col-lg-8 mx-auto">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here -->
-                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <h2 class="text-uppercase">Nome do Itinerário</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="{{asset('/images/portfolio/03-full.jpg')}}"
+                                    <img class="img-fluid d-block mx-auto" src="{{asset('/img/portfolio/03-full.jpg')}}"
                                         alt="">
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
@@ -632,7 +622,7 @@
                                         maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times"></i>
-                                        Close Project</button>
+                                        Fechar</button>
                                 </div>
                             </div>
                         </div>
@@ -655,9 +645,9 @@
                             <div class="col-lg-8 mx-auto">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here -->
-                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <h2 class="text-uppercase">Nome do Itinerário</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="{{asset('/images/portfolio/04-full.jpg')}}"
+                                    <img class="img-fluid d-block mx-auto" src="{{asset('/img/portfolio/04-full.jpg')}}"
                                         alt="">
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
@@ -665,7 +655,7 @@
                                         maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times"></i>
-                                        Close Project</button>
+                                        Fechar</button>
                                 </div>
                             </div>
                         </div>
@@ -688,9 +678,9 @@
                             <div class="col-lg-8 mx-auto">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here -->
-                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <h2 class="text-uppercase">Nome do Itinerário</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="{{asset('/images/portfolio/05-full.jpg')}}"
+                                    <img class="img-fluid d-block mx-auto" src="{{asset('/img/portfolio/05-full.jpg')}}"
                                         alt="">
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
@@ -698,7 +688,7 @@
                                         maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times"></i>
-                                        Close Project</button>
+                                        Fechar</button>
                                 </div>
                             </div>
                         </div>
@@ -721,9 +711,9 @@
                             <div class="col-lg-8 mx-auto">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here -->
-                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <h2 class="text-uppercase">Nome do Itinerário</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="{{asset('/images/portfolio/06-full.jpg')}}img/portfolio/06-full.jpg"
+                                    <img class="img-fluid d-block mx-auto" src="{{asset('/img/portfolio/06-full.jpg')}}"
                                         alt="">
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
@@ -731,7 +721,7 @@
                                         maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times"></i>
-                                        Close Project</button>
+                                        Fechar</button>
                                 </div>
                             </div>
                         </div>
@@ -742,9 +732,9 @@
     </div>
 
     <!-- Scripts -->
-    <script type="text/javascript" src="{{asset('js/script.js')}}" defer></script>
-    <script type="text/javascript" src="{{asset('js/vendor/jquery-easing/jquery.easing.min.js')}}" defer></script>
-    <script type="text/javascript" src="{{asset('js/vendor/jquery/jquery.min.js')}}" defer></script>
-    <script type="text/javascript" src="{{asset('js/vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
+    <script type="text/javascript" src="{{asset('/js/script.js')}}" defer></script>
+    <script type="text/javascript" src="{{asset('/js/vendor/jquery-easing/jquery.easing.min.js')}}" defer></script>
+    <script type="text/javascript" src="{{asset('/js/vendor/jquery/jquery.min.js')}}" defer></script>
+    <script type="text/javascript" src="{{asset('/js/vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
 </body>
 </html>

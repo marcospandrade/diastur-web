@@ -9,6 +9,7 @@ require('./bootstrap');
 
 //Components
 import Profile from './components/Profile.vue';
+import FormSearch from './components/itinerario/FormSearch.vue';
 import Dashboard from './components/Dashboard.vue';
 import Users from './components/Users.vue';
 import RelatorioUsuarios from './components/Relatorios/RelatorioUsuarios.vue';
@@ -56,6 +57,7 @@ let routes = [
     { path: '/users', component: Users },
     { path: '/profile', component: Profile },
     { path: '/relatorioUsuarios', component: RelatorioUsuarios },
+    { path: '/itinerario', component: FormSearch },
     { path: '*', component: require('./components/NotFound.vue')}
 
   ]
